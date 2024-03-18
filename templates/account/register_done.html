@@ -1,0 +1,12 @@
+ {% extends 'news/base.html' %}
+ {% load static %}
+
+ {% block content %}
+
+   <h2 class="text-center">muvaffaqiyatli royxatdan otdingiz</h2>
+    <h1>{{ new_user.first_name }} tabriklaymiz muvaffaqiytli royxatdan otdingiz</h1>
+    <p>endi saytga kirishingiz mumkin <a href="{% url 'login' %}">login</a></p>
+ {% endblock %}
+
+
+

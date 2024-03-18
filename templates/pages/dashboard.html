@@ -1,0 +1,68 @@
+ {% extends 'news/base.html' %}
+ {% load static %}
+
+ {% block content %}
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        img {
+            margin-top: 20px;
+        }
+
+        p {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            color: #444;
+        }
+
+        input {
+            margin-top: 5px;
+            padding: 5px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h4 {
+            margin-top: 20px;
+        }
+    </style>
+ <body></body>
+   <h3>Xush kelibsiz , {{ user.username }}</h3>
+  <h3><a href="{% url 'logout' %}">chiqish</a></h3>
+    <img src="{{ profile_info.photo.url }}" width="20%">
+    <p>tugilgan kuningiz: {{ profile_info.date_of_birth }}</p>
+    <label>username:</label> <input value="{{ user.username }}" readonly placeholder="kiritilmagan"> <br>
+    <label>email:</label> <input value="{{ user.email }}" readonly placeholder="kiritilmagan"> <br>
+    <label>name:</label> <input value="{{ user.first_name }}" readonly placeholder="kiritilmagan"> <br>
+    <label>lastname:</label> <input value="{{ user.last_name }}" readonly placeholder="kiritilmagan"> <br>
+
+    <h4><a href="{% url 'password_change' %}">Parolni almashtirish</a></h4>
+ <h4><a href="{% url 'edit_user_information' %}">Profile edit</a></h4>
+</body>
+ {% endblock %}

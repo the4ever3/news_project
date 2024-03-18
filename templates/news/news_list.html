@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ALL NEWS LIST</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* font o'rnatish */
+            background-color: #f0f0f0; /* foni */
+            padding: 20px; /* yonida qizilish */
+        }
+
+        h1 {
+            color: #333; /* sarlavha rangi */
+        }
+
+        a {
+            text-decoration: none; /* havolani chizishni o'chirish */
+            color: #007bff; /* havola rangi */
+        }
+
+        li {
+            margin-bottom: 10px; /* elementlar o'rtasidagi bo'shlik */
+            background-color: #fff; /* listning foni */
+            padding: 10px; /* ichki bo'shlik */
+            border-radius: 5px; /* kengaytirish */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* qadamlar qadri */
+        }
+
+        li:hover {
+            background-color: #f9f9f9; /* kursorning ustiga kelganda rang */
+        }
+    </style>
+</head>
+<body>
+    <h1>salom o'quvchilar</h1>
+    {% for news in news_list %}
+      <a href="{% url 'news_detail_page' news.pk %}">
+        <li>{{ news.title }}</li>
+      </a>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+ {% extends 'news/base.html' %}
+ {% load static %}
+
+ {% block content %}
+
+   <h2 class="text-center">royhatdan otish</h2>
+    <p>royxatdan otish uchun quyidagi formani toldiring:</p>
+   <form method="post"> {% csrf_token %}
+    {{ user_form.as_p }}
+    <button type="submit">royxatdan otish</button>
+   </form>
+
+ {% endblock %}
+
+
+

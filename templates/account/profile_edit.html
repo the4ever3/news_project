@@ -1,0 +1,14 @@
+ {% extends 'news/base.html' %}
+ {% load static %}
+
+ {% block content %}
+
+   <h2 class="text-center">profile edit</h2>
+    <p>malumotlaringizni ozgartirishingiz mumkin!</p>
+   <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <button type="submit">saqlash</button>
+   </form>
+
+ {% endblock %}

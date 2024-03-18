@@ -1,0 +1,16 @@
+ {% extends 'news/base.html' %}
+ {% load static %}
+
+ {% block content %}
+
+   <h2 class="text-center">saytga kirish</h2>
+    <h4>agar parolni unutgan bolsangiz qayta tiklashingiz mumkin --> <a href="{% url 'password_reset' %}">reset</a></h4>
+   <form method="post"> {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">login</button>
+   </form>
+    <p>agar royxatdan otmagan bolsangiz --> <a href="{% url 'user_register' %}">signup</a></p>
+
+ {% endblock %}
+
+

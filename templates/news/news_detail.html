@@ -1,0 +1,112 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<style>
+    /* Style for the main container */
+    .news-container {
+        max-width: 600px; /* Adjust according to your layout */
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Style for the news title */
+    .news-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    /* Style for the published date */
+    .published-date {
+        font-style: italic;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    /* Style for the news image */
+    .news-image {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    /* Style for the news body */
+    .news-body {
+        line-height: 1.6;
+    }
+
+    /* Style for the links */
+    .action-links {
+        margin-top: 20px;
+    }
+
+    .action-links a {
+        display: inline-block;
+        margin-right: 10px;
+        text-decoration: none;
+        color: #333;
+        background-color: #f0f0f0;
+        padding: 5px 10px;
+        border-radius: 3px;
+    }
+
+    .action-links a:hover {
+        background-color: #ccc;
+    }
+</style>
+
+<div class="news-container">
+    <h1 class="news-title">{{ news.title }}</h1>
+    <p class="published-date">Published date: {{ news.publish_time }}</p>
+    <img class="news-image" src="{{ news.image.url }}" alt="News Image">
+    <p class="news-body">{{ news.body | linebreaks }}</p>
+
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+    <div class="action-links">
+        <a href="{% url 'news_update' news.slug %}">taxrirlash</a>
+        <a href="{% url 'news_delete' news.slug %}">o'chirish</a>
+    </div>
+    {% endif %} <br>
+
+    {% for comment in comments %}
+
+    <div class="comments" style="padding: 10px">
+        <p class="font-weight-bold">
+            {{ comment.user }}
+            <span class="text-muted font-weight-normal">
+                {{ comment.created_time }}
+            </span>
+        </p>
+        {{ comment.body | linebreaks }}
+    </div>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+    <div class="col-md-8 card mb-4 mt-3">
+        <div class="card-body">
+            <h3>izoh qoldirish</h3>
+            <form method="POST" style="margin-top: 1.3em">{% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit" class="btn btn-primary btn-lg">
+                    yuborish
+                </button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="card-body">
+        <p class="text-danger">faqatgina royxatdan otganlar izoh qoldira oladi.</p>
+        <p>izoh qoldirish uchun royxatdan oting <a href="{% url 'user_register' %}">signup</a> yoki accountizga kiring<a href="{% url 'login' %}">login</a></p>
+    </div>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}
